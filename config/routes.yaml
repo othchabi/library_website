@@ -1,0 +1,7 @@
+bookland_index:
+  resource: routes/bookland/home/routes.yaml
+  prefix: /bookland
+
+bookland_init:
+  resource: routes/bookland/init/routes.yaml
+  prefix: /bookland

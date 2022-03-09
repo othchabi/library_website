@@ -1,0 +1,24 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Ajouter genre{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Ajouter genre</h1>
+                </div>
+                <div class="card-body">
+                    {{ include('genre/_form.html.twig') }}
+                    <a href="{{ path('genre_index') }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Retour à la liste</button>
+                            <button class="btn btn-primary" type="button"><i class="fas fa-step-backward"></i></button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

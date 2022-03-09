@@ -1,0 +1,32 @@
+{% extends "layoutgeneral.html.twig" %}
+
+{% block title %}
+    {{ parent() }}Accueil - bookland
+{% endblock %}
+
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="avatar"
+                 style="background-image: url(&quot;/assets/img/upjv.png&quot;);border-radius: 0px;"></div>
+        </div>
+    </section>
+    <section class="portfolio-block photography">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image"
+                                                                                   src="/assets/img/livres.jpg"
+                                                                                   style="height: 288.35px;"></a></div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image"
+                                                                                   src="/assets/img/auteurs.jpg"
+                                                                                   style="height: 287.8px;width: 431.987px;"></a>
+                </div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image"
+                                                                                   src="/assets/img/genres.jpg"
+                                                                                   style="width: 431.987px;height: 288.35px;"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

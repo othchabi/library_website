@@ -1,0 +1,102 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Infos Auteur{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Information sur l'auteur :</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Nom et Prenom</th>
+                            <td>{{ auteur.nomPrenom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sexe</th>
+                            <td>{{ auteur.sexe }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date De Naissance</th>
+                            <td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nationalité</th>
+                            <td>{{ auteur.nationalite }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Livres</th>
+                            <td> {% set livres = auteur.getLivres() %}
+                                {% for livre in livres %}
+                                    <li>{{ livre.titre }} </li>
+                                {% else %}
+                                    <li> Aucun Livre trouver</li>
+                                {% endfor %}
+
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                <th>Genres des livres </th>
+                <td> 
+                        
+                                
+                                    {% for genre in genres %}
+                                    <li>{{ genre.nom }} </li>
+                                
+                                    {% else %}
+                                        <li> Aucun Genre trouver </li>
+                         {% endfor %}
+                        
+
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('auteur_index') }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Retour à la liste</button>
+                            <button class="btn btn-primary" type="button"><i class="fas fa-step-backward"></i></button>
+                        </div>
+                    </a>
+
+                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Modifier</button>
+                            <button class="btn btn-primary" type="button"><i class="far fa-edit"></i></button>
+                        </div>
+                    </a>
+
+                    <a href="{{ path('auteur_note',{'id': auteur.id}) }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Ajouter a toutes les notes des livres de
+                                l'auteur
+                            </button>
+
+
+                        </div>
+                    </a>
+
+
+                    {{ include('auteur/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Ajouter note auteur{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Ajouter note :</h1>
+                </div>
+                <div class="card-body">
+
+
+                    {{ include('auteur/_form.html.twig') }}</div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            {% set livres = auteur.getLivres() %}
+                            <tr>
+                                <th> Titre du livre</th>
+                                <th> Note du livre</th>
+                            </tr>
+                            {% for livre in livres %}
+                                <tr>
+                                    <th>{{ livre.titre }} </th>
+                                    <td>{{ livre.note }}</td>
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+
+
+
+{% endblock %}

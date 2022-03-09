@@ -1,0 +1,23 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Filtrer Livres Dates :{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Filtrer Livres entre 2 Dates :</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        {{ include('livre/_form.html.twig') }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

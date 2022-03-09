@@ -1,0 +1,75 @@
+{% extends "layoutgeneral.html.twig" %}
+
+{% block title %}
+    {{ parent() }} : Genres - bookland
+{% endblock %}
+
+
+{% block contenu %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <h1 style="text-align: left;">Auteurs</h1>
+            <div class="card"> 
+                <div class="card-header py-3"><a class="btn btn-primary float-end" role="button" data-bs-toggle="modal"
+                                                 href="#" data-bs-target="">Ajouter auteur</a>
+                    {#
+                    Modal pour afficher les détails d'un auteur
+                    #}
+                    <div id="detailsAuteurModal" class="modal fade" role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Détails auteur</h4>
+                                    <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-light" type="button" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nom Prénom</th>
+                                <th>Sexe</th>
+                                <th>Date naissance</th>
+                                <th>Nationalité</th>
+                                <th>Détails</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody> 
+                            {#
+                            -La méthode auteur() du controlleur renvoie un tableau 'auteurs'
+                                qui contient tous les auteurs trouvés dans la base de données
+                                -On fait une loupe, pour afficher les propriété de chaque auteur
+                                dans une ligne du tableau html
+                            #}
+                            {% for auteur in auteurs %}
+                                <tr>
+                                    <td>{{ auteur.getNomPrenom() }}</td>
+                                    <td>{{ auteur.getSexe() }}</td>
+                                    <td>{{ auteur.getDateDeNaissance()|date('Y-m-d') }}</td>
+                                    <td>{{ auteur.getNationalite() }}</td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" role="button" data-bs-toggle="modal"
+                                           href="{{ path('auteur', {'id' : auteur.id}) }}" data-bs-target="#detailsAuteurModal">
+                                            
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

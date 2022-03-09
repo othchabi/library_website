@@ -1,0 +1,26 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Calculer nombre de pages :{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Calculer nombre de pages d'un genre :</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        {{ include('genre/_form.html.twig') }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}

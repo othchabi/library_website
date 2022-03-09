@@ -1,0 +1,9 @@
+fichier .txt contenant les noms et prénoms des personnes formant le
+groupe
+
+Noms des membres du groupe :
+
+- LOUDAGH Ali
+- BOUZARZAIT Oumaima
+- CHABI Othman
+- MULUMBA Isaac

@@ -1,0 +1,120 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Livres - bookland{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <h1 style="text-align: left;">Liste des livres :</h1>
+            <div class="card">
+                <div class="card-header py-3">
+                    <a class="btn btn-info float-start" href="{{ path('livre_recherche') }}">Rechercher livre</a>
+
+                    <div><a class="btn btn-primary float-end" href="{{ path('livre_new') }}">Ajouter livre</a></div>
+
+                    <div>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-filter"></i>
+                        </button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body" style="
+    margin-top: 9px;
+    background-color: inherit;
+    border: 0;
+"
+                            >
+                                <button class="btn btn-info" type="button" style="
+    margin-left: 30%;
+    margin-right: 30%;
+"
+                                ><a class="link-light"
+                                    href="{{ path('filtre_livre_dates') }}">Filtrer
+                                        entre 2 dates</a>
+                                </button>
+                                <br>
+
+                                <button class="btn btn-info" type="button" style="
+    margin-left: 30%;
+    margin-right: 30%;
+"><a class="link-light"
+     href="{{ path('filtre_livre_dates_notes') }}">Filtrer entre 2 dates et 2 notes</a>
+                                </button>
+                                <br>
+
+
+
+                                <button class="btn btn-info" type="button" style="
+    margin-left: 30%;
+    margin-right: 30%;
+"><a class="link-light"
+     href="{{ path('filtre_livre_auteur') }}">Filtrer auteurs de nationnalité différentes</a>
+                                </button>
+                                <br>
+                                <button class="btn btn-info" type="button" style="
+    margin-left: 30%;
+    margin-right: 30%;
+"><a class="link-light"
+     href="{{ path('filtre_livre_parite') }} ">Filtrer respect
+                                        parité homme femme</a>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Isbn</th>
+                                <th>Titre</th>
+                                <th>Nombre de pages</th>
+                                <th>Date de parution</th>
+                                <th>Note</th>
+                                <th>Détails</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for livre in livres %}
+                                <tr>
+                                    <td>{{ livre.getIsbn() }}</td>
+                                    <td>{{ livre.getTitre() }}</td>
+                                    <td>{{ livre.getNbpages() }}</td>
+                                    <td>{{ livre.getDateDeParution()|date('Y-m-d') }}</td>
+                                    <td>          {{ livre.getNote() }}
+
+
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('livre_show', {'id': livre.id}) }}">
+                                            <button class="btn btn-info btn-sm" type="button"><i class="fa fa-info"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('livre_edit', {'id': livre.id}) }}">
+                                            <button class="btn btn-primary btn-sm" type="button"><i
+                                                        class="fa fa-edit"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

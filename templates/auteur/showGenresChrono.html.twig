@@ -1,0 +1,64 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Genres par odre chronologique{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h2>{{ auteur.nomPrenom }}</h2>
+                    <h1 style="text-align: left;">Liste des genres dans l’ordre chronologique (croissant) pour lesquels
+                        l'auteur a
+                        écrit au moins livre :</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Plus ancien</th>
+                        </tr>
+                        {% for genre in genres %}
+                            <tr>
+                                <th>Genre :</th>
+                                <td>{{ genre.nom }}</td>
+                                <td>
+                                    {% for livre in auteur.getLivres() %}
+                                        {% for gen in livre.getGenres() %}
+                                            {% if gen == genre %}
+                                                &bull;Livre "{{ livre.titre }}" en :
+                                                {{ livre.dateDeParution()|date('Y-m-d') }}
+                                                <br>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th>Plus récent</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="{{ path('auteur_index') }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Retour à la liste</button>
+                            <button class="btn btn-primary" type="button"><i class="fas fa-step-backward"></i></button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+{% endblock %}

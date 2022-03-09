@@ -1,0 +1,70 @@
+{% extends "layoutgeneral.html.twig" %}
+
+{% block title %}
+    {{ parent() }} : Genres - bookland
+{% endblock %}
+
+
+{% block contenu %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <h1 style="text-align: left;">Genres</h1>
+            <div class="card">
+                <div class="card-header py-3"><a class="btn btn-primary float-end" role="button" data-bs-toggle="modal"
+                                                 href="#" data-bs-target="#ajouterGenreModal">Ajouter genre</a>
+
+                    {# Formulaire d'ajout d'un genre #}
+                    <div id="ajouterGenreModal" class="modal fade" role="dialog" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+                             role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Ajouter genre</h4>
+                                    <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ form_start(ajouterGenreForm) }}
+                                    {{ form_widget(ajouterGenreForm) }}
+                                    <br>
+                                    <button class="btn btn-primary float-end" type="submit">Ajouter</button>
+                                    {{ form_end(ajouterGenreForm) }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-light" type="button" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Note</th>
+                                <th>Détails</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#
+                            -La méthode genre() du controlleur renvoie un tableau 'genres'
+                                qui contient tous les genres trouvés dans la base de données
+                                -On fait une loupe, pour afficher les propriété de chaque genre
+                                dans une ligne du tableau html
+                            #}
+                            {% for genre in genres %}
+                                <tr>
+                                    <td>{{ genre.getNom() }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layoutgeneral.html.twig" %}
+
+{% block title %}
+    {{ parent() }} : Livres - bookland
+{% endblock %}
+
+
+{% block contenu %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <h1 style="text-align: left;">Livres</h1>
+            <div class="card">
+                <div class="card-header py-3"><a class="btn btn-primary float-end" role="button" data-bs-toggle="modal"
+                                                 href="#" data-bs-target="">Ajouter livre</a></div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Isbn</th>
+                                <th>Titre</th>
+                                <th>Nombre de pages</th>
+                                <th>Date de parution</th>
+                                <th>Note</th>
+                                <th>Détails</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#
+                            -La méthode livre() du controlleur renvoie un tableau 'livres'
+                                qui contient tous les livres trouvés dans la base de données
+                                -On fait une loupe, pour afficher les propriété de chaque livre
+                                dans une ligne du tableau html
+                            #}
+                            {% for livre in livres %}
+                                <tr>
+                                    <td>{{ livre.getIsbn() }}</td>
+                                    <td>{{ livre.getTitre() }}</td>
+                                    <td>{{ livre.getNbpages() }}</td>
+                                    <td>{{ livre.getDateDeParution()|date('Y-m-d') }}</td>
+                                    <td>{{ livre.getNote() }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

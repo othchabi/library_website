@@ -1,0 +1,95 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Genres - bookland{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <h1 style="text-align: left;">Liste des genres :</h1>
+            <div class="card">
+                <div class="card-header py-3">
+
+
+                    <div><a class="btn btn-primary float-end" href="{{ path('genre_new') }}">Ajouter genre</a></div>
+
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Genre</th>
+                                <th>Détails</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for genre in genres %}
+                            {% set co = "#" ~ genre.nom %}
+                            <tr>
+                                <td>{{ genre.getNom() }}</td>
+                                <td>
+                                    <a href="{{ path('genre_show', {'id': genre.id}) }}">
+                                        <button class="btn btn-info btn-sm" type="button">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </a>
+
+
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                            data-bs-target={{ co }} aria-expanded="false" aria-controls="czo" style="
+    padding-top: 5px;
+    padding-bottom: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+">
+                                        <h11><small>Trouver</small></h11>
+                                    </button>
+                                    <div class="collapse" id={{ genre.nom }} style="
+                                         margin-left: -15%;
+                                    ">
+                                    <div class="card card-body"
+                                         style="margin-left: 45%;margin-right: 30%;width: 204px;height: 114px;padding-bottom: 8px;border-top-width: 0px;padding-top: 4px;padding-left: 0px;padding-right: 0px;border: 0;">
+                                        <a class="btn btn-primary float-end"
+                                           href="{{ path('Calculer_nombre_pages', {'id': genre.id}) }}" style="
+    margin-top: 0px;
+    padding-top: 0px;
+"><small> Nombre de pages</small> </a><br>
+                                        <a class="btn btn-primary float-end"
+                                           href="{{ path('Calculer_moyenne_pages',{'id': genre.id}) }}" style="
+    margin-top: -10%;
+"> <small>Moyenne nombre de pages</small> </a>
+
+
+                                    </div>
+
+
+                    </div>
+
+                    </td>
+                    <td>
+                        <a href="{{ path('genre_edit', {'id': genre.id}) }}">
+                            <button class="btn btn-primary btn-sm" type="button"><i
+                                        class="fa fa-edit"></i></button>
+                        </a>
+                    </td>
+                    </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+                <a class="btn btn-danger float-end" href="{{ path('delete_genre') }}">Supprimer genres sans livres</a>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

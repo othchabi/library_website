@@ -1,0 +1,113 @@
+{% extends 'layoutgeneral.html.twig' %}
+
+{% block title %}Détails livre{% endblock %}
+
+{% block body %}
+    <section class="portfolio-block block-intro">
+        <div class="container">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h1 style="text-align: left;">Information sur le livre : {{ livre.titre }}</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Isbn</th>
+                            <td>{{ livre.isbn }}</td>
+                        </tr>
+                        <tr>
+                            <th>Titre</th>
+                            <td>{{ livre.titre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nbpages</th>
+                            <td>{{ livre.nbpages }}</td>
+                        </tr>
+                        <tr>
+                            <th>DateDeParution</th>
+                            <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Note</th>
+                            <td>
+                                <a href="{{ path('diminuer_note', {'id': livre.id}) }}">
+                                    <i class="gg-math-minus" style="
+    left: 58%;
+    top: 10px;
+    left: 58%;
+"
+                                    ></i></a>
+
+
+                                {{ livre.note }}
+
+
+                                <a href="{{ path('augmenter_note', {'id': livre.id}) }}">
+                                    <i class="gg-math-plus" style="
+    left: 65%;
+    bottom: 14px;
+    "></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                Genres
+                            </th>
+
+                            <td>
+                                {% set genres = livre.getGenres() %}
+                                {% for genre in genres %}
+                                    <li>{{ genre.nom }} </li>
+
+                                {% endfor %}
+
+                            </td>
+
+
+                        </tr>
+
+
+                        <tr>
+                            <th>
+                                Auteurs
+                            </th>
+
+                            <td>
+                                {% set auteurs = livre.getAuteurs() %}
+                                {% for auteur in auteurs %}
+                                    <li>{{ auteur.nomPrenom }} </li>
+
+                                {% endfor %}
+
+
+                            </td>
+
+
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('livre_index') }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Retour à la liste</button>
+                            <button class="btn btn-primary" type="button"><i class="fas fa-step-backward"></i></button>
+                        </div>
+                    </a>
+
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button">Modifier</button>
+                            <button class="btn btn-primary" type="button"><i class="far fa-edit"></i></button>
+                        </div>
+                    </a>
+                    {{ include('livre/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
